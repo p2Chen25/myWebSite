@@ -1,0 +1,100 @@
+<html>
+<head>
+<script language="javaScript">
+
+function greeting3()
+{
+	/* block comment
+	1)Pick a number random number. 
+	2)Tell someone to pick a number between a range of numbers where your 
+	number is in that range. 
+	3)If they get it wrong tell them if it was high or low. 
+	4)The way you can tell if higher or lower is if your number is higher than theirs you say higher, and vise versa. 
+	5)Then if they get it correct they say good job.
+	*/
+	
+	var usersGuess = -1;
+	var numOfGuesses = 0; // camel case
+	var rand = Math.random()*10
+	rand = rand +1;
+	rand = parseInt(rand);
+	//alert(rand);
+	
+	var usersGuess = prompt ("Guess a number from 1 to 10")
+	//alert(usersGuess);
+	while (usersGuess !=rand) 
+	{
+	
+		if (usersGuess < rand )
+		{
+		alert("Guess is too low")
+		var numOfGuesses = numOfGuesses +1;
+		}
+		else if (usersGuess > rand )
+		{
+		alert("Guess is too high")
+		var numOfGuesses = numOfGuesses +1;
+		}
+		var usersGuess = prompt("Guess a new number.")
+	}
+	
+	if (usersGuess = rand) 
+	var numOfGuesses = numOfGuesses +1;
+	alert("correct you git in in "+numOfGuesses+" guesses");
+	
+	
+	
+	
+	
+}//end of greeting3()
+
+function greeting()
+{
+	alert("Hello There.")// "hello there" is a parameter.
+
+}// end of greeting()
+
+function greeting1()
+{
+	// = is the assignment opperator
+	// assignment stores what's on the right side into the element on the left
+	var name = prompt("Type Name")// "type name" is a parameter.
+	alert("Greetings, "+name);
+	
+}// end of greeting1()
+
+
+function greeting2()
+{
+var answer = confirm("Do you want to play again?");
+alert(answer);
+}//end of greeting2
+
+
+
+</script>
+</head>
+<body bgcolor="sky blue">
+
+<center>
+<h1>My First Java Script</h1>
+
+<input type="button" value="play my guessing game" onclick="greeting3()"/>
+
+
+<br/><br/><br/><br/><br/><br/>
+
+<a href="index.html">Home Page</a><br/><br/>
+
+<hr/ color="black">
+<input type="button" value="Click Me" onclick="greeting()"/>
+
+<hr/ color="yellow">
+<input type="button" value="Click to enter a name" onclick="greeting1()"/>
+
+<hr/ color="white">
+<input type="button" value="Another Question" onclick="greeting2()"/>
+</center>
+</body>
+
+</html>
