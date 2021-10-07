@@ -46,35 +46,14 @@ function increment()
 	}
 	
 }
-
-function playSound()
-{
-	document.getElementById("player").src = clipList[soundCounter];
-	document.getElementById("player").play();
-	
-}
  
-function nextSound()
-{
-
-	if( soundCounter == 5 )
-	{
-		soundCounter = 0
-	}
-	else
-	{
-		soundCounter = soundCounter + 1; 
-	}
-	
-}
 
 function autoRun()
 {
 	if (autoStart == true)
 	{
 		next();
-	
-		timer = setTimout("autoRun()", 5000);
+		timer = setTimeout("autoRun()", 5000);
 	}
 	else
 	{
