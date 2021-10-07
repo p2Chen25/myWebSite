@@ -1,0 +1,148 @@
+<html>
+<head>
+
+<script language = "JavaScript">
+
+var autoStart = false;
+
+var counter = 0
+var picList = [ "images/Slideshow/slideBear.jpg", 
+				"images/Slideshow/slideLion.jpg", 
+				"images/Slideshow/slideLeopard.jpg",
+				"images/Slideshow/slidePanther.jpg",
+				"images/Slideshow/slideWolf.jpg",
+				"images/Slideshow/slideCheetah.jpg" ];
+
+var soundCounter = 0
+var clipList = [ "sounds/BearSound.mp3",
+				 "sounds/LionSound.mp3",
+				 "sounds/LeopardSound.mp3",
+				 "sounds/PantherSound.mp3",
+				 "sounds/WolfSound.mp3",
+				 "sounds/CheetahSound.mp3" ];
+
+var timer;
+
+
+function next()
+{
+
+	document.getElementById("display").src = picList[counter]; 
+	document.getElementById("player").src = clipList[counter];
+	document.getElementById("player").play();
+	increment();
+
+}
+
+function increment()
+{
+	if( counter == 5) 
+	{
+		counter = 0
+	}
+	else
+	{
+		counter = counter + 1; 
+	}
+	
+}
+
+function playSound()
+{
+	document.getElementById("player").src = clipList[soundCounter];
+	document.getElementById("player").play();
+	
+}
+ 
+function nextSound()
+{
+
+	if( soundCounter == 5 )
+	{
+		soundCounter = 0
+	}
+	else
+	{
+		soundCounter = soundCounter + 1; 
+	}
+	
+}
+
+function autoRun()
+{
+	if (autoStart == true)
+	{
+		next();
+	
+		timer = setTimout("autoRun()", 5000);
+	}
+	else
+	{
+		clearTimeout(timer);
+	}
+
+
+
+
+}
+
+function run()
+{
+	if (autoStart == false)
+	{
+		autoStart = true;
+		document.getElementById("runButton").value = "pause"
+	}
+	else 
+	{
+		autoStart = false;
+		document.getElementById("runButton").value = "Run Slideshow"
+	}
+	autoRun(); 
+	
+}
+ 
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+<center>
+<h1> Jungle Predators </h1>
+
+click here to <a href = "index.html">return to my home page </a>
+<br/><br/>
+<input type = "button" value = "Next" onclick = "next()"/>
+<input type = "button" value = "Automatic" onclick = "run()" id = "runButton"/>
+<br/> <br/>
+<img src = "images/Slideshow/slideBear.jpg" id = "display"/>
+
+<audio id = "player"></audio>
+
+</center>
+</body>
+</html>
+
