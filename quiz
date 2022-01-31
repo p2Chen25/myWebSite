@@ -1,0 +1,186 @@
+
+<html>
+<head>
+<script language = JavaScript>
+var counter = 0;
+var score = 0;
+var words = [ "travel", 
+			  "double dribble",
+			  "passing", 
+			  "3 pointer",
+			  "dunk"]
+
+var defs = [ "walking around with ball", 
+             "dribbling with both hands or picking the ball up and dribbling again", 
+			 "throw ball to teammate", 
+			 "a shot that is shot from the three point line or further",
+			 "a 2 pointer that is made by putting the ball in the hoop with hands"]
+			
+			
+var asked = [ false,
+			  false,
+			  false,
+			  false,
+			  false
+			]
+			  
+var i = 0;		  
+			  
+function nextQ()
+{
+
+	var termsOrDefs = document.getElementById("terms").checked;
+	displayClue(termsOrDefs);
+	document.getElementById("answer").value = "";
+	
+	document.getElementById("image").style.visibility = "hidden";
+	
+}
+
+function displayClue(terms)
+{
+	
+	i = getUnusedIndex();
+	if(terms == true)
+	{
+		document.getElementById("clue").value = words[i];
+	}
+	else
+	{
+		document.getElementById("clue").value = defs[i];
+	}
+	
+}
+
+function nextA()
+{
+	var termsOrDefs = document.getElementById("terms").checked;
+	checkAnswer(termsOrDefs)
+}
+
+
+function checkAnswer(terms)
+{
+	var answerList;
+	if(terms == true)
+	{
+		answerList = defs;
+		
+	}
+	else
+	{
+		answerList = words;
+	}
+	
+	var userAns = document.getElementById("answer").value
+	
+	if(userAns == answerList[i])
+	{
+		score += 5;
+		alert("Correct! Your score is "+score);
+		
+		
+		document.getElementById("winLoss").src = "images/smileEmoji.jpg";
+	}
+	else 
+	{
+		alert("Sorry, your score is incorrect");
+		document.getElementById("winLoss").src = "images/sadEmoji.png";
+	}
+	
+	var midPoint = window.innerWidth
+	document.getElementById("image").style.left = ((midPoint/2)-158);
+	document.getElementById("image").style.visibility = "visible";
+	
+	
+	if(counter < words.length-1) 
+	{
+		counter++;
+	}
+	else 
+	{
+		counter = 0
+		endQuiz();
+	}
+}
+
+function doStuff()
+{
+	var temp = getUnusedIndex();
+	if( temp >-1)
+		alert(temp);
+	else 
+		alert("All Question have been asked");
+}
+
+function endQuiz()
+{
+	alert("You got "+score+" points!")
+	for(f=0; f<asked.length; f++)
+	{
+		asked[f]=false
+	
+	}
+	alert(asked)
+}
+
+function getUnusedIndex()
+{
+
+	var rand = Math.floor(Math.random()*asked.length);
+	
+	if( i < asked.length )
+	{
+		while( asked[rand] == true ) 
+		{
+			rand = Math.floor(Math.random()*asked.length);
+		}
+	}
+	else
+	{
+		rand = -1;
+	}
+	
+	
+	asked[rand] = true;
+	
+	
+	return rand;
+}
+
+
+
+
+</script>
+</head>
+<body bgcolor="cardinal">
+<center>
+<h1>Vocab Quiz</h1>
+
+<input type="radio" id="terms" name="qType" onchange="restart()" checked>
+  <label for="terms">Words</label>
+<input type="radio" id="defs" name="qType" on>
+  <label for="defs">Definitions</label>
+<input type="button" value="Next" onclick="nextQ()"/>
+
+<br/>
+
+<input type="button" value="tester" onclick="doStuff()"/>
+
+<br/><br/>
+<input type = "text" id="clue" readonly size=40>
+
+<br/><br/>
+<input type = "text" id="answer" onfocusout="nextA()" size=40>
+<br/>
+<input type="button" value="Check Answer" />
+</center> 
+
+<div id="image" style="position:absolute; top:250; left:450; visibility:hidden;">
+
+	<img id="winLoss" src="images/taDaa.jpg">
+
+</div>
+
+</body>
+</html>
